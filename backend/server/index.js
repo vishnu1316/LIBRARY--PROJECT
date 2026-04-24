@@ -17,7 +17,7 @@ import facultyRoutes from './routes/facultyRoutes.js';
 connectDB();
 
 const app = express();
-
+export default app;
 // Middleware
 app.use(cors());
 app.use(express.json());
