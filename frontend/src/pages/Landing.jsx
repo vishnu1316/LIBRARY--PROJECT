@@ -70,7 +70,7 @@ const FEAT_SVGS = {
 
 export default function Landing() {
   const navigate = useNavigate();
-  const { books, users, dispatch, addToast } = useLibrary();
+  const { books, users, dispatch, addToast, login } = useLibrary();
   const [showUserPicker, setShowUserPicker] = useState(null);
   const [showAdminLogin, setShowAdminLogin] = useState(false);
   const [adminCreds, setAdminCreds] = useState({ email: '', password: '' });
@@ -143,10 +143,17 @@ export default function Landing() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const loginAs = (role, user) => {
-    dispatch({ type: 'SET_ROLE', role: role.id, user });
-    addToast(`Welcome, ${user.name}! Entering ${role.label}…`, 'success');
-    navigate(`/${role.id}`);
+  const loginAs = async (role, user) => {
+    try {
+      if (login) {
+        await login({ email: user.email, password: 'demo123' });
+      } else {
+        dispatch({ type: 'SET_AUTH', role: role.id, user });
+      }
+      navigate(`/${role.id}`);
+    } catch (err) {
+      addToast('Failed to authenticate with backend.', 'danger');
+    }
   };
 
   const handleRoleSelect = (role) => {

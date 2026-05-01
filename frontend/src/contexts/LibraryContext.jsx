@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer, useEffect, useCallback, useState } from 'react';
 
 /* ── Constants & Configuration ───────────────────────────────────── */
-export const API_BASE = "https://library-project-backend-se0l.onrender.com";
+export const API_BASE = "https://library-project-backend-se0l.onrender.com/api";
 const STORAGE_KEY = 'LIBRANOVA_AUTH';
 
 export const DEMO_ACCOUNTS = [

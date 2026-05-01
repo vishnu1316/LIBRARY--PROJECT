@@ -18,7 +18,9 @@ const uri = process.env.MONGODB_URI;
 // Try direct connection string as fallback if SRV fails
 const directUri = 'mongodb://vishnu_db_user:9676303473@ac-dioyah7-shard-00-00.dlofohl.mongodb.net:27017,ac-dioyah7-shard-00-01.dlofohl.mongodb.net:27017,ac-dioyah7-shard-00-02.dlofohl.mongodb.net:27017/libra_nova_db?ssl=true&replicaSet=atlas-zwdnbd-shard-0&authSource=admin&retryWrites=true&w=majority';
 
-const client = new MongoClient(uri, {
+const connectionString = uri || directUri;
+
+const client = new MongoClient(connectionString, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,

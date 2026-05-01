@@ -17,7 +17,17 @@
 .memberName { font-size: 0.88rem; font-weight: 600; color: #e8f4ff; }
 .memberEmail { font-size: 0.75rem; color: rgba(232,244,255,0.4); }
 .form { display: flex; flex-direction: column; gap: 14px; }
-.formRow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.formRow { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 12px; 
+}
+
+@media (max-width: 600px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+}
 .metricBar { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 24px; }
 .metricCard {
   background: rgba(255, 255, 255, 0.03);

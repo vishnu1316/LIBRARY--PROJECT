@@ -71,12 +71,25 @@ export default function PageShell({ role, children }) {
 
   const closeSearch = useCallback(() => setSearchOpen(false), []);
 
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <div 
       className={`${styles.shell} ${!settings.animations ? 'no-animations' : ''}`} 
       onMouseMove={handleMouseMove}
       style={{ '--mouse-x': mousePos.x, '--mouse-y': mousePos.y }}
     >
+      {/* Mobile Header */}
+      <header className={styles.mobileHeader}>
+        <button className={styles.hamburger} onClick={() => setSidebarOpen(true)}>
+          <div className={styles.hamLine} />
+          <div className={styles.hamLine} />
+          <div className={styles.hamLine} />
+        </button>
+        <span className={styles.mobileLogo}>LibraNova</span>
+        <button className={styles.mobileSearchBtn} onClick={() => setSearchOpen(true)}>🔍</button>
+      </header>
+
       {/* 10000x Extrema: The Edge HUD frames the space natively */}
       <div className={styles.edgeHUD}>
         <div className={styles.telemetryTopLeft}>
@@ -106,7 +119,7 @@ export default function PageShell({ role, children }) {
         </div>
       )}
       <ParticleCanvas />
-      <Sidebar role={role} />
+      <Sidebar role={role} isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <main className={styles.main}>
         <div className={styles.content}>
           {children}

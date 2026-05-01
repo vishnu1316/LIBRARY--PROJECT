@@ -56,47 +56,49 @@ export default function AdminDashboard() {
             </span>
           </div>
           
-          <table className={styles.dataTable}>
-            <thead>
-              <tr>
-                <th>Resource Asset</th>
-                <th>Member Entity</th>
-                <th>Log Type</th>
-                <th>Timestamp</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {recentTx.map(tx => {
-                const book = books.find(b => b.id === tx.bookId);
-                const user = users.find(u => u.id === tx.userId);
-                const overdue = tx.status !== 'returned' && new Date(tx.dueDate) < new Date();
-                return (
-                  <tr key={tx.id} className="haptic-pulse">
-                    <td>
-                      <strong style={{ color: book?.coverColor || '#fff' }}>
-                        {book?.title || 'Unknown'}
-                      </strong>
-                    </td>
-                    <td>{user?.name || 'Unknown'}</td>
-                    <td>
-                      <span className={`badge badge-${tx.type === 'return' ? 'success' : 'info'}`}>
-                        {tx.type}
-                      </span>
-                    </td>
-                    <td style={{fontFamily: 'monospace', opacity: 0.8}}>
-                      {new Date(tx.issueDate).toLocaleDateString()}
-                    </td>
-                    <td>
-                      <span className={`badge badge-${tx.status === 'returned' ? 'success' : overdue ? 'danger' : 'warning'}`}>
-                        {overdue && tx.status !== 'returned' ? 'CRITICAL OVERDUE' : tx.status}
-                      </span>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <div className="table-responsive">
+            <table className={styles.dataTable}>
+              <thead>
+                <tr>
+                  <th>Resource Asset</th>
+                  <th>Member Entity</th>
+                  <th>Log Type</th>
+                  <th>Timestamp</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {recentTx.map(tx => {
+                  const book = books.find(b => b.id === tx.bookId);
+                  const user = users.find(u => u.id === tx.userId);
+                  const overdue = tx.status !== 'returned' && new Date(tx.dueDate) < new Date();
+                  return (
+                    <tr key={tx.id} className="haptic-pulse">
+                      <td>
+                        <strong style={{ color: book?.coverColor || '#fff' }}>
+                          {book?.title || 'Unknown'}
+                        </strong>
+                      </td>
+                      <td>{user?.name || 'Unknown'}</td>
+                      <td>
+                        <span className={`badge badge-${tx.type === 'return' ? 'success' : 'info'}`}>
+                          {tx.type}
+                        </span>
+                      </td>
+                      <td style={{fontFamily: 'monospace', opacity: 0.8}}>
+                        {new Date(tx.issueDate).toLocaleDateString()}
+                      </td>
+                      <td>
+                        <span className={`badge badge-${tx.status === 'returned' ? 'success' : overdue ? 'danger' : 'warning'}`}>
+                          {overdue && tx.status !== 'returned' ? 'CRITICAL OVERDUE' : tx.status}
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         {/* Book Inventory: High-Fidelity List */}

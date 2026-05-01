@@ -731,4 +731,21 @@ h1, h2, h3, h4, h5 {
    ============================================ */
 @media (max-width: 768px) {
   :root { --sidebar-width: 0; }
+  
+  .hidden-mobile { display: none !important; }
+  .show-mobile { display: block !important; }
+  
+  .flex-mobile-col { flex-direction: column !important; }
+  
+  .content {
+    padding: 20px 16px !important;
+  }
+}
+
+.show-mobile { display: none; }
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }

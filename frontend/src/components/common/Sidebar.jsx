@@ -71,7 +71,7 @@ const ROLE_LABELS = {
   student:   '🎓 Student',
 };
 
-export default function Sidebar({ role }) {
+export default function Sidebar({ role, isOpen, onClose }) {
   const navigate = useNavigate();
   const location = useLocation();
   const { dispatch, currentUser, addToast, getStats } = useLibrary();
@@ -94,10 +94,20 @@ export default function Sidebar({ role }) {
 
   const handleNavClick = (path) => {
     navigate(path);
+    if (onClose) onClose(); // Close sidebar on mobile after navigation
   };
 
   return (
-    <aside className={`${styles.sidebar} ${collapsed ? styles.collapsed : ''}`}>
+    <>
+      {/* Mobile Overlay */}
+      {isOpen && (
+        <div 
+          className={styles.mobileOverlay} 
+          onClick={onClose}
+        />
+      )}
+
+      <aside className={`${styles.sidebar} ${collapsed ? styles.collapsed : ''} ${isOpen ? styles.mobileOpen : ''}`}>
       <div className={styles.glow} style={{ background: color }} />
 
       {/* Logo */}
@@ -188,5 +198,6 @@ export default function Sidebar({ role }) {
         </button>
       </div>
     </aside>
+    </>
   );
 }
