@@ -20,7 +20,7 @@ const app = express();
 
 // ✅ CORS CONFIG (IMPORTANT)
 app.use(cors({
-  origin: "*",   // 🔁 After frontend deploy, replace with your frontend URL
+  origin: "https://library-project-v99.onrender.com",   // 🔁 After frontend deploy, replace with your frontend URL
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
