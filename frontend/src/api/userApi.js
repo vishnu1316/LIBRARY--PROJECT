@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const USER_API = "http://localhost:5000/api/users";
+const USER_API = "https://library-project-kxc3.onrender.com/api/users";
 
 // CREATE USER (request)
 export const createUser = (data) => axios.post(`${USER_API}/create`, data);
