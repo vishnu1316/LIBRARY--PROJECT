@@ -7,7 +7,6 @@
     "dev:frontend": "cd frontend && vite",
     "dev:backend": "nodemon backend/server/index.js",
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
-
     "preview": "cd frontend && vite preview",
     "test": "cd frontend && vitest",
     "test:ui": "cd frontend && vitest --ui",
